@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rip.postservice.mybatis.mapper.PostMapper">
+    <select id="findAll" resultType="com.rip.postservice.mybatis.entity.Post">
+      SELECT * FROM post;
+    </select>
+
+    <select id="findById" resultType="com.rip.postservice.mybatis.entity.Post">
+        SELECT * FROM post WHERE id = #{postId};
+    </select>
+
+
+    <insert id="create" parameterType="com.rip.postservice.DTO.PostDTO">
+        INSERT INTO post(title,content) values(#{title,jdbcType=VARCHAR},#{content,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update">
+        update post set
+                        title = #{post.title, jdbcType=VARCHAR} ,
+                        content = #{post.content, jdbcType=VARCHAR}
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from post where id = #{id}
+    </delete>
+
+
+</mapper>
